@@ -1,0 +1,32 @@
+﻿<CodeSnippets
+    xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>spchol305_ex1_createdoclib_urlproperty</Title>
+      <Shortcut>spchol305_ex1_createdoclib_urlproperty</Shortcut>
+        <Description>Code snippet for spchol305 Ex1 Create Document Library Url Property</Description>
+      <Author>Microsoft Corporation</Author>
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+    </Header>
+    <Snippet>
+      <Code Language="vb">
+        <![CDATA[Public Shared UrlProperty As DependencyProperty = DependencyProperty.Register("Url", GetType(String), GetType(CreateDocumentLibrary), New PropertyMetadata(""))
+    <DescriptionAttribute("Url of base site")> _
+    <BrowsableAttribute(True)> _
+    <DesignerSerializationVisibilityAttribute(DesignerSerializationVisibility.Visible)> _
+    <ValidationOption(ValidationOption.[Optional])> _
+    Public Property Url() As String
+        Get
+            Return DirectCast((MyBase.GetValue(CreateDocumentLibrary.UrlProperty)), String)
+        End Get
+        Set(ByVal value As String)
+            MyBase.SetValue(CreateDocumentLibrary.UrlProperty, value)
+        End Set
+    End Property
+]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

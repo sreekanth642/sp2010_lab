@@ -1,0 +1,44 @@
+﻿<CodeSnippets
+    xmlns="http://schemas.microsoft.com/VisualStudio/2008/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>spchol200_ex2_provider_createchildcontrol</Title>
+      <Shortcut>spchol200_ex2_provider_createchildcontrol</Shortcut>
+      <Description>Code snippet for SPCHOL200 Ex2 Provider CreateChildControl</Description>
+      <Author>Microsoft Corporation</Author>
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+    </Header>
+    <Snippet>
+      <Code Language="csharp">
+        <![CDATA[
+try
+{
+    _projectPicker = new DropDownList();
+
+    using (SPSite spSite = new SPSite(SPContext.Current.Web.Url))
+    using (SPWeb spWeb = spSite.OpenWeb())
+    {
+        SPList projectsList = spWeb.Lists["Projects"];
+
+        foreach (SPListItem project in projectsList.Items)
+        {
+            _projectPicker.Items.Add(new ListItem(project.Title, project.ID.ToString()));
+        }
+    }
+
+    _projectPicker.AutoPostBack = true;
+
+    this.Controls.Add(_projectPicker);
+}
+catch (Exception ex)
+{
+    this.Controls.Clear();
+    this.Controls.Add(new LiteralControl(ex.Message));
+}
+]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

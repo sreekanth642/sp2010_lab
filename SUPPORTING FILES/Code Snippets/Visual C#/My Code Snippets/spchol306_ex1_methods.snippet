@@ -1,0 +1,38 @@
+﻿<CodeSnippets
+    xmlns="http://schemas.microsoft.com/VisualStudio/2008/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>spchol306_ex1_methods</Title>
+      <Shortcut>spchol306_ex1_methods</Shortcut>
+      <Description>Code snippet for Variables used in spchol306 Ex1 Methods</Description>
+      <Author>Microsoft Corporation</Author>
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+    </Header>
+    <Snippet>
+      <Code Language="csharp">
+        <![CDATA[private void OnRequestSucceeded(Object sender, ClientRequestSucceededEventArgs args)
+{
+    // this is not called on the UI thread
+    Dispatcher.BeginInvoke(BindData);
+}
+
+private void BindData()
+{
+    List<Project> projects = new List<Project>();
+    foreach (ListItem li in _projects)
+    {
+        projects.Add(new Project()
+        {
+            Title = li["Title"].ToString(),
+            DueDate = Convert.ToDateTime(li["Due_x0020_Date"].ToString()),
+            Description = li["Description"].ToString()
+        });
+    }
+    dataGrid1.ItemsSource = projects; // must be on UI thread
+}]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<WorkflowInfo>
+	<Actions Sequential="then" Parallel="and">
+		<Action Name="Create Document Library"
+            ClassName="SPDActivityDemo.CreateDocumentLibrary"
+            Assembly="SPDActivityDemo, Version=1.0.0.0,  
+           Culture=neutral, PublicKeyToken=a66e91d2ee2fa8f8"
+            AppliesTo="all"
+            Category="Labs">
+			<RuleDesigner Sentence="Document Library Name %1 to site %2.">
+				<FieldBind Field="DocLibName" Text="Document Library Name"
+                   DesignerType="TextArea" Id="1"/>
+				<FieldBind Field="Url" Text="Url of base site" Id="2"
+                   DesignerType="TextArea"/>
+			</RuleDesigner>
+			<Parameters>
+				<Parameter Name="DocLibName" Type="System.String, mscorlib"
+              Direction="In" />
+				<Parameter Name="Url" Type="System.String, mscorlib"
+              Direction="In" />
+			</Parameters>
+		</Action>
+	</Actions>
+</WorkflowInfo>

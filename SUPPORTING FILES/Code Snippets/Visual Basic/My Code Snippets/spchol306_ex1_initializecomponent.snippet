@@ -1,0 +1,36 @@
+﻿<CodeSnippets
+    xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>spchol306_ex1_initializecomponent</Title>
+      <Shortcut>spchol306_ex1_initializecomponent</Shortcut>
+      <Description>Code snippet for Variables used in spchol306 Ex1 Initialize Component</Description>
+      <Author>Microsoft Corporation</Author>
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+    </Header>
+    <Snippet>
+      <Code Language="vb">
+        <![CDATA[Dim context As ClientContext = New ClientContext(ApplicationContext.Current.Url)
+context.Load(context.Web)
+Dim Projects As List = context.Web.Lists.GetByTitle("Projects")
+context.Load(Projects)
+
+Dim query As CamlQuery = New CamlQuery()
+Dim camlQueryXml As String = "<View><Query><Where><Gt>" + _
+    "<FieldRef Name='Due_x0020_Date' />" + _
+    "<Value Type='DateTime'>2008-01-1T00:00:00Z</Value>" + _
+    "</Gt></Where></Query><ViewFields>" + _
+    "<FieldRef Name=""Title"" /><FieldRef Name=""Description"" />" + _
+    "<FieldRef Name=""Due_x0020_Date"" />" + _
+    "</ViewFields></View>"
+
+query.ViewXml = camlQueryXml
+_projects = Projects.GetItems(query)
+context.Load(_projects)
+context.ExecuteQueryAsync(New ClientRequestSucceededEventHandler(AddressOf OnRequestSucceeded), Nothing)]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

@@ -1,0 +1,35 @@
+﻿<CodeSnippets
+    xmlns="http://schemas.microsoft.com/VisualStudio/2008/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>spchol305_ex1_createdoclib_urlproperty</Title>
+      <Shortcut>spchol305_ex1_createdoclib_urlproperty</Shortcut>
+        <Description>Code snippet for spchol305 Ex1 Create Document Library Url Property</Description>
+      <Author>Microsoft Corporation</Author>
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+    </Header>
+    <Snippet>
+      <Code Language="csharp">
+        <![CDATA[public static DependencyProperty UrlProperty = DependencyProperty.Register("Url", typeof(string), typeof(CreateDocumentLibrary), new PropertyMetadata(""));
+[DescriptionAttribute("Url of base site")]
+[BrowsableAttribute(true)]
+[DesignerSerializationVisibilityAttribute(DesignerSerializationVisibility.Visible)]
+[ValidationOption(ValidationOption.Optional)]
+public string Url
+{
+    get
+    {
+        return ((string)(base.GetValue(CreateDocumentLibrary.UrlProperty)));
+    }
+    set
+    {
+        base.SetValue(CreateDocumentLibrary.UrlProperty, value);
+    }
+}
+]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

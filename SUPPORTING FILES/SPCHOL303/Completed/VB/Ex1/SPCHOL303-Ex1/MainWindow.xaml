@@ -1,0 +1,8 @@
+﻿<Window x:Class="MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Title="MainWindow" Height="350" Width="525">
+    <Grid>
+        <ListBox Height="238" Margin="12,11,12,13" Name="ListBox1" Width="254" />
+    </Grid>
+</Window>

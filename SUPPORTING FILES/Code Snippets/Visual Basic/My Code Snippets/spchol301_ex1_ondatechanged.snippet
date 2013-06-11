@@ -1,0 +1,24 @@
+﻿<CodeSnippets
+    xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+    <CodeSnippet Format="1.0.0">
+        <Header>
+            <Title>spchol301_ex1_ondatechanged</Title>
+            <Shortcut>spchol301_ex1_ondatechanged</Shortcut>
+            <Description>Code snippet for SPCHOL301 Ex1 OnDate_Changed Method</Description>
+            <Author>Microsoft Corporation</Author>
+            <SnippetTypes>
+                <SnippetType>Expansion</SnippetType>
+            </SnippetTypes>
+        </Header>
+        <Snippet>
+            <Code Language="VB">
+                <![CDATA[Protected  Sub OnDate_Changed(ByVal sender As Object, ByVal e As EventArgs)
+   SPUtility.Redirect(SPContext.Current.ListItem.Name _
+   , SPRedirectFlags.Default _
+   , HttpContext.Current _
+   , String.Format("date={0}", DueDate.SelectedDate.ToString("d")))
+End Sub]]>
+            </Code>
+        </Snippet>
+    </CodeSnippet>
+</CodeSnippets>

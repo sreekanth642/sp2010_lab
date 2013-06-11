@@ -1,0 +1,59 @@
+﻿<CodeSnippets
+    xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>spchol302_ex1_queries</Title>
+      <Shortcut>spchol302_ex1_queries</Shortcut>
+      <Description>Code snippet for SPCHOL302 Ex1 Linq Query Methods</Description>
+      <Author>Microsoft Corporation</Author>
+    </Header>
+    <Snippet>
+      <Code Language="VB">
+        <![CDATA[
+Public Sub ChangeQuery(ByVal sender As Object, ByVal e As EventArgs) Handles dropDownList.SelectedIndexChanged
+        Dim selected = dropDownList.SelectedValue
+
+
+        Select Case selected
+            Case "Projects"
+                GetProjects()
+
+            Case "Employees"
+                GetEmployees()
+
+            Case "Bugs"
+                GetBugs()
+
+        End Select
+    End Sub
+
+
+
+    Private Sub GetProjects()
+        Dim projQuery = From p In Projects _
+                           Where p.DueDate < DateTime.Now.AddMonths(6) _
+                           Select Title = p.DueDate, JobTitle = p.Description, ProjectTitle = p.DueDate
+
+
+        spGridView.DataSource = projQuery
+        spGridView.DataBind()
+    End Sub
+    Private Sub GetEmployees()
+        Dim empQuery = From emp In Employees _
+           Where emp.Project.DueDate < DateTime.Now.AddMonths(6) _
+           Select emp.Title, emp.JobTitle, ProjectTitle = emp.Project.Title
+
+        spGridView.DataSource = empQuery
+        spGridView.DataBind()
+    End Sub
+    Private Sub GetBugs()
+        Dim bugsQuery = From bug In Bugs _
+                      Select Title = bug.Project, JobTitle = bug.Description, PojectTitle = bug.AssignedTo
+
+        spGridView.DataSource = bugsQuery
+        spGridView.DataBind()
+    End Sub]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

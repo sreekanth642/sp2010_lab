@@ -1,0 +1,38 @@
+<CodeSnippets
+    xmlns="http://schemas.microsoft.com/VisualStudio/2008/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>spchol308_ex2_HTML</Title>
+      <Shortcut>spchol308_ex2_HTML</Shortcut>
+      <Description>Code snippet for Lab10 Ex2 HTML</Description>
+      <Author>Microsoft Corporation</Author>
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+    </Header>
+    <Snippet>
+      <Code Language="html">
+        <![CDATA[<div style="font-weight: bold">Project List</div>
+<br />
+<table id="tblProjectList" style="border: solid 1px silver">
+    
+</table>
+<br />
+<a href="javascript:ShowAddProject()">Add a project</a>
+<br /> 
+
+
+<div id="divAddProject" style="display: none; padding: 5px">
+   <b>Project Information</b><br /><br />
+
+    Name <br />
+    <input type="text" id="txtProjectName" /><br />
+    Description<br />
+    <input type="text" id="txtDescription" /><br />
+    <span id="spnError" style="color: Red" /><br />
+    <input type="button" value="Add New Project" onclick="AddProject()" />
+</div>]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

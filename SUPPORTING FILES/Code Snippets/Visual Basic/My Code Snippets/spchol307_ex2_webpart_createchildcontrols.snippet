@@ -1,0 +1,46 @@
+﻿<CodeSnippets
+    xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>spchol307_ex2_webpart_createchildcontrols</Title>
+      <Shortcut>spchol307_ex2_webpart_createchildcontrols</Shortcut>
+      <Description>Code snippet for SPCHOL307 Ex2 CreateChildControls</Description>
+      <Author>Microsoft Corporation</Author>
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+    </Header>
+    <Snippet>
+      <Code Language="vb">
+        <![CDATA[Private _lbl As New Label
+Private _txt As New TextBox
+Private _child As New Button
+
+Protected Overrides Sub CreateChildControls()
+    MyBase.CreateChildControls()
+    _child.Text = "Show All Lists"
+    AddHandler _child.Click, New EventHandler(AddressOf child_Click)
+
+    Controls.Add(_txt)
+    Controls.Add(_child)
+    Controls.Add(_lbl)
+End Sub
+
+Private Sub child_Click(ByVal sender As Object, ByVal e As EventArgs)
+    Dim dt As DateTime = DateTime.Now
+    Do
+        Dim allWebs As SPWebCollection = SPContext.Current.Site.AllWebs
+        Dim web As SPWeb
+        For Each web In allWebs
+            Dim lists As SPListCollection = web.Lists
+            Dim list As SPList
+            For Each list In lists
+                _lbl.Text = (_lbl.Text & "<br>" & list.Title)
+            Next
+        Next
+    Loop While (dt.AddSeconds(CDbl(Integer.Parse(_txt.Text))).CompareTo(DateTime.Now) > 0)
+End Sub]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

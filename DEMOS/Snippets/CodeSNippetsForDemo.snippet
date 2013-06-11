@@ -1,0 +1,343 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets  xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>SPQUsing</Title>
+      <Description></Description>
+      <Author>Microsoft Corporation</Author>
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+      <Shortcut>wp1</Shortcut>
+    </Header>
+    <Snippet>
+      <Code Language="csharp">
+        <![CDATA[using System.Linq;
+using Projects;
+using Microsoft.SharePoint;
+using Microsoft.SharePoint.Linq;]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+  <CodeSnippet Format="1.0.0">
+        <Header>
+            <Title>Simple Linq to SharePoint</Title>
+            <Description>Linq to SharePoint Demo Code</Description>
+            <Author>Microsoft Corporation</Author>
+            <SnippetTypes>
+              <SnippetType>Expansion</SnippetType>
+            </SnippetTypes>
+          <Shortcut>wp2</Shortcut>
+        </Header>
+        <Snippet>
+            <Code Language="csharp">
+                <![CDATA[    ProjectsDataContext dc = new
+    ProjectsDataContext(SPContext.Current.Web.Url);
+
+    EntityList<EmployeesItem> Employees = 
+    dc.GetList<EmployeesItem>("Employees");
+
+    var empQuery = from emp in Employees
+                   where emp.Project.DueDate <
+                   DateTime.Now.AddMonths(6)
+                   select new { emp.Title, emp.JobTitle, 
+                   ProjectTitle = emp.Project.Title, 
+                   DueDate =
+                   emp.Project.DueDate.Value.ToShortDateString() };
+
+    spGridView.DataSource = empQuery;
+    spGridView.DataBind();]]>
+            </Code>
+        </Snippet>
+    </CodeSnippet>
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>BCS1</Title>
+      <Description></Description>
+      <Author>Microsoft Corporation</Author>
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+      <Shortcut>bcs1</Shortcut>
+    </Header>
+    <Snippet>
+      <Code Language="csharp">
+        <![CDATA[public static Dictionary<string, Entity1> d = new Dictionary<string, Entity1>()
+        {
+            {"0", new Entity1(){Identifier1="0", Message="Paul"}},
+            {"1", new Entity1(){Identifier1="1", Message="Peter"}}
+        };]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>BCS2</Title>
+      <Description></Description>
+      <Author>Microsoft Corporation</Author>
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+      <Shortcut>bcs2</Shortcut>
+    </Header>
+    <Snippet>
+      <Code Language="csharp">
+        <![CDATA[return new Entity1() { Identifier1 = d[id].Identifier1, Message = d[id].Message};
+]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>BCS3</Title>
+      <Description></Description>
+      <Author>Microsoft Corporation</Author>
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+      <Shortcut>bcs3</Shortcut>
+    </Header>
+    <Snippet>
+      <Code Language="csharp">
+        <![CDATA[return d.Values;]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>BCS4</Title>
+      <Description></Description>
+      <Author>Microsoft Corporation</Author>
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+      <Shortcut>bcs4</Shortcut>
+    </Header>
+    <Snippet>
+      <Code Language="csharp">
+        <![CDATA[d[Identifier1].Message = entity1.Message;
+            d[Identifier1].Identifier1 = entity1.Identifier1;]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>ResourceHog</Title>
+      <Description></Description>
+      <Author>Microsoft Corporation</Author>
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+      <Shortcut>hog</Shortcut>
+    </Header>
+    <Snippet>
+      <Code Language="csharp">
+        <![CDATA[TextBox txt = new TextBox();
+            Button btn = new Button();
+            btn.Text = "CPU Catastrophe";
+            btn.Click += delegate
+            {
+                DateTime dt = DateTime.Now;
+
+                SPWebCollection Webs;
+                SPListCollection lists;
+                string lstTitle;
+                do
+                {
+                    Webs = SPContext.Current.Site.AllWebs;
+                    foreach (SPWeb web in Webs)
+                    {
+                        lists = web.Lists;
+                        foreach (SPList list in lists)
+                        {
+                            lstTitle = list.Title;
+                        }
+                    }
+                }
+                while (dt.AddSeconds(int.Parse(txt.Text)).CompareTo(DateTime.Now) > 0);
+            };
+
+            Controls.Add(txt);
+            Controls.Add(btn);]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>REST Console App</Title>
+      <Description></Description>
+      <Author>Microsoft Corporation</Author>
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+      <Shortcut>REST</Shortcut>
+    </Header>
+    <Snippet>
+      <Code Language="csharp">
+        <![CDATA[ServiceReference1.DemoDataContext ctx = new ServiceReference1.DemoDataContext(new Uri("http://localhost/_vti_bin/listdata.svc"));
+  ctx.Credentials = System.Net.CredentialCache.DefaultCredentials;
+
+  IEnumerable<ServiceReference1.EmployeesItem>
+    emps = ctx.Execute<ServiceReference1.EmployeesItem>(new Uri("Employees?$top=10", UriKind.Relative));
+
+            foreach (ServiceReference1.EmployeesItem emp in emps)
+            {
+                Console.WriteLine("Employee Name: " + emp.Fullname);
+            }]]>
+          </Code>
+        </Snippet>
+      </CodeSnippet>
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>REST WInForms</Title>
+      <Description></Description>
+      <Author>Microsoft Corporation</Author>
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+      <Shortcut>rest1</Shortcut>
+    </Header>
+    <Snippet>
+      <Code Language="csharp">
+        <![CDATA[TeamSiteDataContext dc = new TeamSiteDataContext(new Uri("http://localhost/_vti_bin/listdata.svc"));]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>REST WinForms</Title>
+      <Description></Description>
+      <Author>Microsoft Corporation</Author>
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+      <Shortcut>rest2</Shortcut>
+    </Header>
+    <Snippet>
+      <Code Language="csharp">
+        <![CDATA[dc.Credentials = CredentialCache.DefaultCredentials;
+            employeesBindingSource.DataSource = dc.Employees;]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>Silverlight1</Title>
+      <Description></Description>
+      <Author>Microsoft Corporation</Author>
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+      <Shortcut>sl1</Shortcut>
+    </Header>
+    <Snippet>
+      <Code Language="csharp">
+        <![CDATA[using Microsoft.SharePoint.Client;]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>Silverlight2</Title>
+      <Description></Description>
+      <Author>Microsoft Corporation</Author>
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+      <Shortcut>sl2</Shortcut>
+    </Header>
+    <Snippet>
+      <Code Language="csharp">
+        <![CDATA[public class Project
+    {
+        public String Title { get; set; }
+        public DateTime DueDate { get; set; }
+        public String Description { get; set; } 
+    }
+]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>Silverlight3</Title>
+      <Description></Description>
+      <Author>Microsoft Corporation</Author>
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+      <Shortcut>sl3</Shortcut>
+    </Header>
+    <Snippet>
+      <Code Language="csharp">
+        <![CDATA[private ListItemCollection ProjectItems;]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>Silverlight4</Title>
+      <Description></Description>
+      <Author>Microsoft Corporation</Author>
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+      <Shortcut>sl4</Shortcut>
+    </Header>
+    <Snippet>
+      <Code Language="csharp">
+        <![CDATA[ClientContext context = new ClientContext("http://sharepoint2-pc");
+            context.Load(context.Web);
+            List Projects = context.Web.Lists.GetByTitle("Projects");
+            context.Load(Projects);
+            CamlQuery query = new Microsoft.SharePoint.Client.CamlQuery();
+            String strQuery = "<View><Query><Where><Gt>" +
+                "<FieldRef Name='Due_x0020_Date' /><Value Type='DateTime'>2008-01-1T00:00:00Z</Value>" +
+                "</Gt></Where></Query><ViewFields>" +
+                "<FieldRef Name=\"Title\" /><FieldRef Name=\"Description\" /><FieldRef Name=\"Due_x0020_Date\" />" +
+                "</ViewFields></View>";
+            query.ViewXml = strQuery;
+            ProjectItems = Projects.GetItems(query);
+            context.Load(ProjectItems);
+            context.ExecuteQueryAsync(new ClientRequestSucceededEventHandler(OnRequestSucceeded), new ClientRequestFailedEventHandler(OnRequestFailed));
+        }
+
+        private void OnRequestSucceeded(Object sender, ClientRequestSucceededEventArgs args)
+        {
+            // this is not called on the UI thread
+            Dispatcher.BeginInvoke(() =>
+            {
+                List<Project> projects = new List<Project>();
+                foreach (ListItem li in ProjectItems)
+                {
+                    projects.Add(new Project()
+                    {
+                        Title = li["Title"].ToString(),
+                        DueDate = Convert.ToDateTime(li["Due_x0020_Date"].ToString()),
+                        Description = li["Description"].ToString()
+                    });
+                }
+                dataGrid1.ItemsSource = projects; // must be on UI thread
+            }
+            );
+        }
+        private void OnRequestFailed(Object sender, ClientRequestFailedEventArgs args)
+        {
+            // this is not called on the UI thread
+            Dispatcher.BeginInvoke(() =>
+            {
+                List<Project> projects = new List<Project>();
+                projects.Add(new Project()
+                {
+                    Title = "Error",
+                    DueDate = System.DateTime.Now,
+                    Description = args.Message
+                });
+
+                dataGrid1.ItemsSource = projects; // must be on UI 
+            }
+            );]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

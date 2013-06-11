@@ -1,0 +1,48 @@
+﻿<CodeSnippets
+    xmlns="http://schemas.microsoft.com/VisualStudio/2008/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>spchol200_ex2_consumer_createchildcontrol</Title>
+      <Shortcut>spchol200_ex2_consumer_createchildcontrol</Shortcut>
+      <Description>Code snippet for SPCHOL200 Ex2 Consumer Createchildcontrol</Description>
+      <Author>Microsoft Corporation</Author>
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+    </Header>
+    <Snippet>
+      <Code Language="csharp">
+        <![CDATA[
+try
+{
+    _lbl = new Label();
+
+    if (_provider != null)
+    {
+        if (_provider.Id > 0)
+        {
+            _lbl.Text = _provider.Name + " was selected.";
+        }
+        else
+        {
+            _lbl.Text = "Nothing was selected.";
+        }
+    }
+    else
+    {
+        _lbl.Text = "No Provider Web Part Connected.";
+    }
+
+    this.Controls.Add(_lbl);
+}
+catch (Exception ex)
+{
+    this.Controls.Clear();
+    this.Controls.Add(new LiteralControl(ex.Message));
+}
+
+]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

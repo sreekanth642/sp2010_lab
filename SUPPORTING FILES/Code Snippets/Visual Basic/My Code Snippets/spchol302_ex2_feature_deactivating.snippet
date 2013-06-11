@@ -1,0 +1,21 @@
+﻿<CodeSnippets
+    xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>spchol302_ex2_feature_deactivating</Title>
+      <Shortcut>spchol302_ex2_feature_deactivating</Shortcut>
+      <Description>Code snippet for SPCHOL302 Ex2 Feature Deactivating</Description>
+      <Author>Microsoft Corporation</Author>
+    </Header>
+    <Snippet>
+      <Code Language="VB">
+        <![CDATA[
+ Using spWeb As SPWeb = TryCast(properties.Feature.Parent, SPWeb)
+   Dim myContentType As SPContentType = spWeb.ContentTypes("New Announcements")
+   spWeb.ContentTypes.Delete(myContentType.Id)
+   spWeb.Fields("Team Project").Delete()
+End Using]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

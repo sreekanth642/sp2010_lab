@@ -1,0 +1,31 @@
+﻿<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>spchol300_ex1_autoassign</Title>
+      <Shortcut>spchol300_ex1_autoassign</Shortcut>
+      <Description>Code snippet for SPCHOL300 Ex1 AutoAssign</Description>
+      <Author>Microsoft Corporation</Author>
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+    </Header>
+    <Snippet>
+      <Code Language="vb">
+        <![CDATA[Private Shared Sub AutoAssign(ByVal properties As SPItemEventProperties)
+    Dim projectName As String = properties.AfterProperties("BugProject").ToString()
+    Dim projectList As SPList = properties.Web.GetList("Lists/Projects")
+    For Each item As SPListItem In projectList.Items
+        If item.Title.ToLower().Contains(projectName.ToLower()) Then
+            Dim contact As String = item("Primary Contact").ToString()
+            If contact.Contains(";#") Then
+                contact = contact.Split("#"c)(1)
+            End If
+            properties.AfterProperties("BugAssignedTo") = contact
+            Exit For
+        End If
+    Next
+End Sub]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

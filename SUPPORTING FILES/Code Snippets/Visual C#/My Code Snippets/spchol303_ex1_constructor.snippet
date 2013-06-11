@@ -1,0 +1,36 @@
+﻿<CodeSnippets
+    xmlns="http://schemas.microsoft.com/VisualStudio/2008/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>spchol303_ex1_constructor</Title>
+      <Shortcut>spchol303_ex1_constructor</Shortcut>
+      <Description>Code snippet for SPCHOL303 Ex1 Constructor</Description>
+      <Author>Microsoft Corporation</Author>
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+    </Header>
+    <Snippet>
+      <Code Language="csharp">
+        <![CDATA[
+        ClientContext context =
+    new ClientContext("http://intranet.contoso.com");
+
+Web site = context.Web;
+context.Load(site,osite=>osite.Title);
+context.ExecuteQuery();
+
+Title = site.Title;
+
+ListCollection lists = site.Lists;
+IEnumerable<SP.List> listsCollection =
+    context.LoadQuery(lists.Include(l => l.Title,l => l.Id));            
+context.ExecuteQuery();
+
+ListBox1.ItemsSource = listsCollection;
+ListBox1.DisplayMemberPath = "Title";
+]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

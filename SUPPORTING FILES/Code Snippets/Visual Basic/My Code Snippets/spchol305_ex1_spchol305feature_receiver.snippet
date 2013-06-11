@@ -1,0 +1,30 @@
+﻿<CodeSnippets
+    xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>spchol305_ex1_spchol305feature_receiver</Title>
+      <Shortcut>spchol305_ex1_spchol305feature_receiver</Shortcut>
+      <Description>Code snippet for spchol305 Ex1 spchol305Feature Event Receiver</Description>
+      <Author>Microsoft Corporation</Author>
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+    </Header>
+    <Snippet>
+      <Code Language="vb">
+        <![CDATA[Public Overloads Overrides Sub FeatureActivated(ByVal properties As SPFeatureReceiverProperties)
+        Dim wappCurrent As SPWebApplication = DirectCast(properties.Feature.Parent, SPWebApplication)
+        Dim modAuthorizedType As New SPWebConfigModification()
+        modAuthorizedType.Name = "AuthType"
+        modAuthorizedType.Owner = "SPDActivityDemo"
+        modAuthorizedType.Path = "configuration/System.Workflow.ComponentModel.WorkflowCompiler/authorizedTypes"
+        modAuthorizedType.Type = SPWebConfigModification.SPWebConfigModificationType.EnsureChildNode
+        modAuthorizedType.Value = "<authorizedType Assembly=""SPDActivityDemo, " & "Version=1.0.0.0, Culture=neutral, PublicKeyToken=a66e91d2ee2fa8f8"" " & "Namespace=""SPDActivityDemo"" TypeName=""*"" Authorized=""True"" />"
+        wappCurrent.WebConfigModifications.Add(modAuthorizedType)
+        wappCurrent.WebService.ApplyWebConfigModifications()
+    End Sub
+]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

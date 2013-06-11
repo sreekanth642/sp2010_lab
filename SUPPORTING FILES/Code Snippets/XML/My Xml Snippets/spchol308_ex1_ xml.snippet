@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippet Format="1.0.0" xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <Header>
+    <Title>spchol308_ex1_ xml</Title>
+    <Author>author</Author>
+    <Shortcut>shortcut</Shortcut>
+    <Description>description</Description>
+    <SnippetTypes>
+      <SnippetType>SurroundsWith</SnippetType>
+      <SnippetType>Expansion</SnippetType>
+    </SnippetTypes>
+  </Header>
+  <Snippet>
+    <Declarations>
+      <Literal>
+        <ID>name</ID>
+        <Default>value</Default>
+      </Literal>
+    </Declarations>
+    <Code Language="XML">
+      <![CDATA[<?xml version="1.0" encoding="utf-8"?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+  <CustomAction
+   Id="DemoHelloWorldButton"
+   RegistrationId="101"
+   RegistrationType="List"
+   Location="CommandUI.Ribbon"
+   Sequence="5"
+   Title="Hello World">
+    <CommandUIExtension>
+      <CommandUIDefinitions>
+        <CommandUIDefinition
+         Location="Ribbon.Documents.Manage.Controls._children">
+          <Button
+           Id="Ribbon.Documents.New.Controls.DemoHelloWorldButton"
+           Alt="Hello World Ribbon Button"
+           Sequence="10"
+           Command="Demo_HelloWorld"
+           Image32by32="/_layouts/images/ribbondemo/demobutton.png"
+           LabelText="Hello World Demo"
+           TemplateAlias="o1"/>
+        </CommandUIDefinition>
+      </CommandUIDefinitions>
+      <CommandUIHandlers>
+        <CommandUIHandler
+         Command="Demo_HelloWorld"
+         CommandAction="javascript:alert('Hello World!');"
+         />
+      </CommandUIHandlers>
+    </CommandUIExtension>
+  </CustomAction>
+</Elements>
+]]>
+    </Code>
+  </Snippet>
+</CodeSnippet>

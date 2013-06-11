@@ -1,0 +1,38 @@
+﻿<CodeSnippets
+    xmlns="http://schemas.microsoft.com/VisualStudio/2008/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>spchol301_ex1_pageload</Title>
+      <Shortcut>spchol301_ex1_pageload</Shortcut>
+      <Description>Code snippet for SPCHOL301 Ex1 Page_Load Method</Description>
+      <Author>Microsoft Corporation</Author>
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+    </Header>
+    <Snippet>
+      <Code Language="csharp">
+        <![CDATA[DateTime dueDate = DateTime.Now;
+
+            if (!string.IsNullOrEmpty(Request.QueryString["date"]))
+            {
+                dueDate = DateTime.Parse(Request.QueryString["date"]);
+            }
+            DueDate.SelectedDate = dueDate;
+
+            SPWeb home = SPContext.Current.Web;
+            ProjectsListView.List = home.Lists["Projects"];
+            
+            SPQuery query = new SPQuery(ProjectsListView.List.DefaultView);
+            query.ViewFields = "<FieldRef Name=\"Title\" /><FieldRef Name=\"Due_x0020_Date\" />";
+            query.Query = string.Format(
+                "<Where><Leq><FieldRef Name=\"Due_x0020_Date\" /><Value Type=\"DateTime\">{0}</Value></Leq></Where>"
+                , dueDate.ToString("s"));
+
+            ProjectsListView.DisableFilter = true;
+            ProjectsListView.DisableSort = true;
+            ProjectsListView.Query = query;]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

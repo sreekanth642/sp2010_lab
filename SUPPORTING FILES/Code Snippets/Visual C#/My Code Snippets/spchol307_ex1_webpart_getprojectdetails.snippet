@@ -1,0 +1,44 @@
+﻿<CodeSnippets
+    xmlns="http://schemas.microsoft.com/VisualStudio/2008/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>spchol307_ex1_webpart_getprojectdetails</Title>
+      <Shortcut>spchol307_ex1_webpart_getprojectdetails</Shortcut>
+      <Description>Code snippet for SPCHOL307 Ex2 GetProjectDetails</Description>
+      <Author>Microsoft Corporation</Author>
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+    </Header>
+    <Snippet>
+      <Code Language="csharp">
+        <![CDATA[protected override void OnLoad(EventArgs e)
+{
+    base.OnLoad(e);
+    if (!Page.IsPostBack)
+        GetProjectDetails();
+}
+
+/* Populate the text boxes with the selected project details */
+private void GetProjectDetails()
+{
+    EnsureChildControls();
+    if (_ddlProjects.SelectedValue != "-- Select a Project --")
+    {
+        SPList pList = SPContext.Current.Web.Lists["Projects"];
+        int nProjectID = Convert.ToInt32(_ddlProjects.SelectedValue);
+        SPListItem spliProject = pList.GetItemById(nProjectID);
+        _tbDescription.Text = spliProject["Description"].ToString();
+        DateTime dueDate = Convert.ToDateTime(spliProject["Due_x0020_Date"]);
+        _tbDueDate.Text = dueDate.ToShortDateString();
+    }
+    else
+    {
+        _tbDescription.Text = String.Empty;
+        _tbDueDate.Text = String.Empty;
+    }
+}]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

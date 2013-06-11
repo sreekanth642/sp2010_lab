@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" dslVersion="1.0.0.0" Id="13d767c9-45bb-4a45-8960-1682fcdefdfe" solutionId="13d767c9-45bb-4a45-8960-1682fcdefdfe" resetWebServer="false" name="SPCHOL305Ex1" xmlns="http://schemas.microsoft.com/VisualStudio/2008/SharePointTools/PackageModel">
+  <assemblies>
+    <projectOutputAssembly location="SPDActivityDemo.dll" deploymentTarget="GlobalAssemblyCache" projectPath="..\SPDActivityDemo\SPDActivityDemo.csproj">
+      <safeControls>
+        <safeControl assemblyName="SPDActivityDemo, Version=1.0.0.0, Culture=neutral, PublicKeyToken= a66e91d2ee2fa8f8" namespaceName="SPDActivityDemo" typeName="*" isSafeAgainstScript="false" />
+      </safeControls>
+    </projectOutputAssembly>
+  </assemblies>
+  <features>
+    <featureReference itemId="e904ce38-2ae2-4842-95c3-c5937bafcf6e" />
+    <featureReference itemId="bd706a6a-df44-49a1-9f21-ced163f6c285" projectPath="..\SPDWorkflowImport\SPDWorkflowImport.csproj" />
+  </features>
+  <projectItems>
+    <projectItemReference itemId="9a09e9d3-cb8c-42d6-95ed-401a18c877e1" />
+  </projectItems>
+</package>

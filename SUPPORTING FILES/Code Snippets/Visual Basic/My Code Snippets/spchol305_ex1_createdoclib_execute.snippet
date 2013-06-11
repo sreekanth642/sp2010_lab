@@ -1,0 +1,38 @@
+﻿<CodeSnippets
+    xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>spchol305_ex1_createdoclib_execute</Title>
+      <Shortcut>spchol305_ex1_createdoclib_execute</Shortcut>
+      <Description>Code snippet for spchol305 Ex1 Create Document Library Execute Method</Description>
+      <Author>Microsoft Corporation</Author>
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+    </Header>
+    <Snippet>
+      <Code Language="vb">
+        <![CDATA[Public Sub New()
+        InitializeComponent()
+    End Sub
+    
+   Protected Overloads Overrides Function Execute(ByVal executionContext As ActivityExecutionContext) As ActivityExecutionStatus
+        CreateDocLib()
+        Return ActivityExecutionStatus.Closed
+    End Function
+
+    Private Sub CreateDocLib()
+        Using sps As New SPSite(Url)
+            Using spw As SPWeb = sps.RootWeb
+                Dim ID As Guid = spw.Lists.Add(DocLibName, DocLibName & " Document Library", SPListTemplateType.DocumentLibrary)
+                Dim spdl As SPList = spw.Lists(ID)
+                spdl.OnQuickLaunch = True
+                spdl.Update()
+            End Using
+        End Using
+    End Sub
+]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

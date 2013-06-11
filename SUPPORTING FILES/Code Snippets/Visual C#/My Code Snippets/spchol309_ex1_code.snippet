@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippet Format="1.0.0" xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <Header>
+    <Title>spchol309_ex1_code</Title>
+    <Author>author</Author>
+    <Shortcut>spchol309_ex1_code</Shortcut>
+    <Description>description</Description>
+    <SnippetTypes>
+      <SnippetType>SurroundsWith</SnippetType>
+      <SnippetType>Expansion</SnippetType>
+    </SnippetTypes>
+  </Header>
+  <Snippet>
+    <Declarations>
+      <Literal>
+        <ID>name</ID>
+        <Default>value</Default>
+      </Literal>
+    </Declarations>
+    <Code Language="csharp">
+      <![CDATA[ [Export(typeof(ISharePointProjectExtension))]
+    public class SharePointProjectExtension : ISharePointProjectExtension
+    {
+
+        public void Initialize(ISharePointProjectService projectService)
+        {
+            var items = from pi in projectService.ProjectItemTypes
+                        where pi.Key == "Microsoft.VisualStudio.SharePoint.ListDefinition"
+                        select pi.Value;
+            var listType = items.FirstOrDefault();
+            listType.ProjectItemMenuItemsRequested += ContextMenuRequested;
+        }
+        void ContextMenuRequested(object sender, SharePointProjectItemMenuItemsRequestedEventArgs e)
+        {
+            var mi = e.ViewMenuItems.Add("Hello SharePoint Extensibility!");
+            mi.Click += ContextMenuClicked;
+        }
+        void ContextMenuClicked(object sender, MenuItemEventArgs e)
+        {
+            MessageBox.Show("Hello From a SharePoint project extension");
+        }
+
+
+    }]]>
+    </Code>
+  </Snippet>
+</CodeSnippet>

@@ -1,0 +1,26 @@
+﻿<CodeSnippets
+    xmlns="http://schemas.microsoft.com/VisualStudio/2008/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>spchol302_ex2_feature_deactivating</Title>
+      <Shortcut>spchol302_ex2_feature_deactivating</Shortcut>
+      <Description>Code snippet for SPCHOL302 Ex2 Feature Deacctivating</Description>
+      <Author>Microsoft Corporation</Author>
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+    </Header>
+    <Snippet>
+      <Code Language="csharp">
+        <![CDATA[
+ using (SPWeb spWeb = properties.Feature.Parent as SPWeb)
+            {
+                SPContentType myContentType = spWeb.ContentTypes["New Announcements"];
+                spWeb.ContentTypes.Delete(myContentType.Id);
+                spWeb.Fields["Team Project"].Delete();
+            }
+]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

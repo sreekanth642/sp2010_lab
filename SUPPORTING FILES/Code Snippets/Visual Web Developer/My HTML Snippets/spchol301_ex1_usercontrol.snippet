@@ -1,0 +1,25 @@
+﻿<CodeSnippets
+    xmlns="http://schemas.microsoft.com/VisualStudio/2008/CodeSnippet">
+    <CodeSnippet Format="1.0.0">
+        <Header>
+            <Title>spchol301_ex1_usercontrol</Title>
+            <Shortcut>spchol301_ex1_usercontrol</Shortcut>
+            <Description>Code snippet for SPCHOL301 Ex1 User Control</Description>
+            <Author>Microsoft Corporation</Author>
+            <SnippetTypes>
+                <SnippetType>Expansion</SnippetType>
+            </SnippetTypes>
+        </Header>
+        <Snippet>
+            <Code Language="html">
+                <![CDATA[<SharePoint:ListViewByQuery runat="server" ID="ProjectsListView" />
+<br />
+<asp:Label runat="server" Text="Items due by:" />
+
+<SharePoint:DateTimeControl ID="DueDate" AutoPostBack="true" 
+OnDateChanged="OnDate_Changed" DateOnly="true" runat="server">
+</SharePoint:DateTimeControl>]]>
+            </Code>
+        </Snippet>
+    </CodeSnippet>
+</CodeSnippets>

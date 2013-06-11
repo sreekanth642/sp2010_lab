@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>spchol200_ex2_provider_properties</Title>
+      <Shortcut>spchol200_ex2_provider_properties</Shortcut>
+      <Description>Code snippet for SPCHOL200 Ex2 Provider Properties</Description>
+      <Author>Microsoft Corporation</Author>
+    </Header>
+    <Snippet>
+      <Code Language="VB">
+        <![CDATA[
+Private _projectPicker As DropDownList = Nothing
+
+ReadOnly Property IdProp() As Integer Implements IProject.Id
+   Get
+      Return Integer.Parse(_projectPicker.SelectedValue)
+   End Get
+End Property
+
+ReadOnly Property Name() As String Implements IProject.Name
+   Get
+      Return _projectPicker.SelectedItem.ToString()
+   End Get
+End Property
+]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

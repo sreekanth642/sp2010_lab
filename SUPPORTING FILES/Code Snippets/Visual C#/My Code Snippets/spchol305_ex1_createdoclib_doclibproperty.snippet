@@ -1,0 +1,35 @@
+﻿<CodeSnippets
+    xmlns="http://schemas.microsoft.com/VisualStudio/2008/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>spchol305_ex1_createdoclib_doclibproperty</Title>
+      <Shortcut>spchol305_ex1_createdoclib_doclibproperty</Shortcut>
+      <Description>Code snippet for spchol305 Ex1 Create Document Library DocLib Property</Description>
+      <Author>Microsoft Corporation</Author>
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+    </Header>
+    <Snippet>
+      <Code Language="csharp">
+        <![CDATA[public static DependencyProperty DocLibNameProperty = DependencyProperty.Register("DocLibName", typeof(string), typeof(CreateDocumentLibrary), new PropertyMetadata(""));
+[DescriptionAttribute("Used as doc lib name")]
+[BrowsableAttribute(true)]
+[DesignerSerializationVisibilityAttribute(DesignerSerializationVisibility.Visible)]
+[ValidationOption(ValidationOption.Optional)]
+public string DocLibName
+{
+  get
+  {
+      return ((string)(base.GetValue(CreateDocumentLibrary.DocLibNameProperty)));
+  }
+  set
+  {
+      base.SetValue(CreateDocumentLibrary.DocLibNameProperty, value);
+  }
+}
+]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

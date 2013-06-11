@@ -1,0 +1,29 @@
+﻿<CodeSnippets
+    xmlns="http://schemas.microsoft.com/VisualStudio/2008/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>spchol302_ex1_pageload</Title>
+      <Shortcut>spchol302_ex1_pageload</Shortcut>
+      <Description>Code snippet for SPCHOL302 Ex1 Page_Load Method</Description>
+      <Author>Microsoft Corporation</Author>
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+    </Header>
+    <Snippet>
+      <Code Language="csharp">
+        <![CDATA[string spWebUrl=SPContext.Current.Web.Url;
+
+SPLinqDataContext dc = new SPLinqDataContext(spWebUrl);
+
+Projects = dc.GetList<ProjectsItem>("Projects");
+Employees = dc.GetList<EmployeesItem>("Employees");
+Bugs = dc.GetList<BugItem>("Bugs");
+if (!IsPostBack)
+                GetEmployees();
+dc.Dispose();
+]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

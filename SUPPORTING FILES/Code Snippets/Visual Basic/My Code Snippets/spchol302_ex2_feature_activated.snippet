@@ -1,0 +1,48 @@
+﻿<CodeSnippets
+    xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>spchol302_ex2_feature_activated</Title>
+      <Shortcut>spchol302_ex2_feature_activated</Shortcut>
+      <Description>Code snippet for SPCHOL302 Ex2 Feature Activated</Description>
+      <Author>Microsoft Corporation</Author>
+    </Header>
+    <Snippet>
+      <Code Language="VB">
+        <![CDATA[
+Using spWeb As SPWeb = TryCast(properties.Feature.Parent, SPWeb)
+    Dim newAnnouncement As SPContentType = _
+           spWeb.ContentTypes _
+           .Cast(Of SPContentType) _
+           .FirstOrDefault(Function(c) c.Name = "New Announcements")
+    If newAnnouncement IsNot Nothing Then
+          newAnnouncement.Delete()
+    End If
+
+    Dim newField As SPField = _
+           spWeb.Fields _
+           .Cast(Of SPField) _
+           .FirstOrDefault(Function(f) f.StaticName = "Team Project")
+    If newField IsNot Nothing Then
+           newField.Delete()
+    End If
+
+    Dim myContentType As New SPContentType _
+             (spWeb.ContentTypes("Announcement"), _
+              spWeb.ContentTypes, "New Announcements")
+    myContentType.Group = "Custom Content Types"
+
+    spWeb.Fields.Add("Team Project", SPFieldType.Text, True)
+    Dim projFeldLink As New SPFieldLink(spWeb.Fields("Team Project"))
+    myContentType.FieldLinks.Add(projFeldLink)
+
+    Dim companyFieldLink As New SPFieldLink(spWeb.Fields("Company"))
+    myContentType.FieldLinks.Add(companyFieldLink)
+
+    spWeb.ContentTypes.Add(myContentType)
+    myContentType.Update()
+End Using]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

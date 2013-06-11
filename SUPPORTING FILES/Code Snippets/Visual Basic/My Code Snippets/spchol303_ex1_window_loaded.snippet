@@ -1,0 +1,31 @@
+﻿<CodeSnippets
+    xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>spchol303_ex1_window_loaded</Title>
+      <Shortcut>spchol303_ex1_window_loaded</Shortcut>
+      <Description>Code snippet for SPCHOL303 Ex1 Window Loaded</Description>
+      <Author>Microsoft Corporation</Author>
+    </Header>
+    <Snippet>
+      <Code Language="VB">
+        <![CDATA[
+    Dim context As New ClientContext("http://intranet.contoso.com")
+
+Dim site As Web = context.Web
+context.Load(site, Function(osite) osite.Title)
+context.ExecuteQuery()
+
+Title = site.Title
+
+Dim lists As ListCollection = site.Lists
+Dim listsCollection As IEnumerable(Of SP.List) = _
+  context.LoadQuery(lists.Include(Function(l) l.Title, Function(l) l.Id))
+context.ExecuteQuery()
+
+ListBox1.ItemsSource = listsCollection
+ListBox1.DisplayMemberPath = "Title" ]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

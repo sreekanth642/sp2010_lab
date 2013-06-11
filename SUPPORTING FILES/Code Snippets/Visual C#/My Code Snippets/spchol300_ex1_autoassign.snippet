@@ -1,0 +1,35 @@
+﻿<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2008/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>spchol300_ex1_autoassign</Title>
+      <Shortcut>spchol300_ex1_autoassign</Shortcut>
+      <Description>Code snippet for SPCHOL300 Ex1 AutoAssign</Description>
+      <Author>Microsoft Corporation</Author>
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+    </Header>
+    <Snippet>
+      <Code Language="csharp">
+        <![CDATA[private static void AutoAssign(SPItemEventProperties properties)
+{
+    string projectName = properties.AfterProperties["BugProject"].ToString();
+    SPList projectList = properties.Web.GetList("Lists/Projects");
+    foreach (SPListItem item in projectList.Items)
+    {
+        if (item.Title.ToLower().Contains(projectName.ToLower()))
+        {
+             string contact = item["Primary Contact"].ToString();
+             if (contact.Contains(";#"))
+             {
+                 contact = contact.Split('#')[1];
+             }
+             properties.AfterProperties["BugAssignedTo"] = contact;
+             break;
+        }
+    }
+}]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

@@ -1,0 +1,30 @@
+﻿<CodeSnippet Format="1.1.0" xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <Header>
+    <Title>spchol200_ex1_spgridview</Title>
+    <Author>Microsoft Corporation</Author>
+    <Shortcut>spchol200_ex1_spgridview</Shortcut>
+    <Description>Markup snippet for SPCHOL200 SPGridView</Description>
+    <SnippetTypes>
+      <SnippetType>Expansion</SnippetType>
+      <SnippetType>SurroundsWith</SnippetType>
+    </SnippetTypes>
+  </Header>
+  <Snippet>
+    <Code Language="html">
+      <![CDATA[
+
+<%@ Import Namespace="Microsoft.SharePoint.WebControls" %>
+<SharePoint:SPGridView id="spGridView" runat="server" AutoGenerateColumns="false">
+  <HeaderStyle HorizontalAlign="Left" ForeColor="Navy" Font-Bold="true" />
+  <Columns>
+    <SharePoint:SPBoundField  DataField="Title" HeaderText="Title"></SharePoint:SPBoundField>
+    <SharePoint:SPBoundField DataField="JobTitle" HeaderText="JobTitle"></SharePoint:SPBoundField>
+    <SharePoint:SPBoundField DataField="ProjectTitle" HeaderText="ProjectTitle"></SharePoint:SPBoundField>
+    <SharePoint:SPBoundField DataField="DueDate" HeaderText="DueDate"></SharePoint:SPBoundField>
+  </Columns>
+</SharePoint:SPGridView>
+
+]]>
+    </Code>
+  </Snippet>
+</CodeSnippet>

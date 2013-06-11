@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package dslVersion="1.0.0.0" Id="9238bc6e-d156-499a-beae-7b1b0f0d0aeb" solutionId="9238bc6e-d156-499a-beae-7b1b0f0d0aeb" xmlns="http://schemas.microsoft.com/VisualStudio/2008/SharePointTools/PackageModel" name="SPCHOL305Ex2">
+    <features>
+        <featureReference itemId="f8ed9537-d57b-4ce7-9740-b97ab19619b0" />
+    </features>
+</package>

@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>spchol200_ex2_provider_createchildcontrol</Title>
+      <Shortcut>spchol200_ex2_provider_createchildcontrol</Shortcut>
+      <Description>Code snippet for SPCHOL200 Ex2 Provider CreateChildControl</Description>
+      <Author>Microsoft Corporation</Author>
+    </Header>
+    <Snippet>
+      <Code Language="VB">
+        <![CDATA[
+Try
+     _projectPicker = New DropDownList()
+
+     Using spSite As New SPSite(SPContext.Current.Web.Url)
+        Using spWeb As SPWeb = spSite.OpenWeb()
+            Dim projectsList As SPList = spWeb.Lists("Projects")
+
+            For Each project As SPListItem In projectsList.Items
+                  _projectPicker.Items.Add(New ListItem(project.Title, project.ID.ToString()))
+            Next
+        End Using
+     End Using
+
+    _projectPicker.AutoPostBack = True
+
+    Me.Controls.Add(_projectPicker)
+Catch ex As Exception
+    Me.Controls.Clear()
+    Me.Controls.Add(New LiteralControl(ex.Message))
+End Try
+]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package dslVersion="1.0.0.0" Id="bd08844e-f300-487d-99a6-84ba1f998d72" solutionId="bd08844e-f300-487d-99a6-84ba1f998d72" xmlns="http://schemas.microsoft.com/VisualStudio/2008/SharePointTools/PackageModel" name="BusinessDataCatalog1">
+    <features>
+        <featureReference projectId="23f6794f-dade-4149-8a11-16c16b3e7ed8" itemId="e999018b-94ff-4502-9980-26c396396846" />
+    </features>
+</package>

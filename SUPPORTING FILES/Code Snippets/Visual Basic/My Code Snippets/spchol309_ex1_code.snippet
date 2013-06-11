@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippet Format="1.0.0" xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <Header>
+    <Title>spchol309_ex1_code</Title>
+    <Author>spchol309_ex1_code</Author>
+    <Shortcut>spchol309_ex1_code</Shortcut>
+    <Description>description</Description>
+    <SnippetTypes>
+      <SnippetType>SurroundsWith</SnippetType>
+      <SnippetType>Expansion</SnippetType>
+    </SnippetTypes>
+  </Header>
+  <Snippet>
+    <Declarations>
+      <Literal>
+        <ID>name</ID>
+        <Default>value</Default>
+      </Literal>
+    </Declarations>
+    <Code Language="XML">
+      <![CDATA[ <Export(GetType(ISharePointProjectExtension))>
+    Public Class SharePointProjectExtension
+        Implements ISharePointProjectExtension
+
+
+        Sub Initialize(ByVal projectService As ISharePointProjectService) Implements ISharePointProjectExtension.Initialize
+            Dim items = From pi In projectService.ProjectItemTypes
+                        Where pi.Key = "Microsoft.VisualStudio.SharePoint.ListDefinition"
+                        Select pi.Value
+
+            Dim listType = items.FirstOrDefault()
+            AddHandler listType.ProjectItemMenuItemsRequested, AddressOf ContextMenuRequested
+        End Sub
+
+        Private Sub ContextMenuRequested(ByVal sender As Object, ByVal e As SharePointProjectItemMenuItemsRequestedEventArgs)
+            Dim mi = e.ViewMenuItems.Add("Hello SharePoint Extensibility!")
+            AddHandler mi.Click, AddressOf ContextMenuClicked
+        End Sub
+
+
+        Private Sub ContextMenuClicked(ByVal sender As Object, ByVal e As MenuItemEventArgs)
+            MessageBox.Show("Hello From a SharePoint project extension")
+        End Sub
+
+      
+    End Class]]>
+    </Code>
+  </Snippet>
+</CodeSnippet>

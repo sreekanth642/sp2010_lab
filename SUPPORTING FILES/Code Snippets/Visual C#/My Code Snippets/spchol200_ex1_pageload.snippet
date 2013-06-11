@@ -1,0 +1,39 @@
+﻿<CodeSnippets
+    xmlns="http://schemas.microsoft.com/VisualStudio/2008/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>spchol200_ex1_pageload</Title>
+      <Shortcut>spchol200_ex1_pageload</Shortcut>
+      <Description>Code snippet for SPCHOL200 Ex1 PageLoad</Description>
+      <Author>Microsoft Corporation</Author>
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+    </Header>
+    <Snippet>
+      <Code Language="csharp">
+        <![CDATA[
+var dc = new SPLinqDataContext(SPContext.Current.Web.Url);
+
+var Employees = dc.GetList<EmployeesItem>("Employees");
+
+var empQuery = from emp in Employees
+               where emp.Project.DueDate <
+               DateTime.Now.AddMonths(6)
+               select new
+               {
+                   emp.Title,
+                   emp.JobTitle,
+                   ProjectTitle = emp.Project.Title,
+                   DueDate =
+                   emp.Project.DueDate.Value.ToShortDateString()
+               };
+
+spGridView.DataSource = empQuery;
+spGridView.DataBind();
+
+]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

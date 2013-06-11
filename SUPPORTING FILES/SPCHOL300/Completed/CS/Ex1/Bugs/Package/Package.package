@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package dslVersion="1.0.0.0" Id="1314e2df-881a-4669-ac1b-8034fcc02d55" solutionId="1314e2df-881a-4669-ac1b-8034fcc02d55" xmlns="http://schemas.microsoft.com/VisualStudio/2008/SharePointTools/PackageModel" name="Bugs">
+    <features>
+        <featureReference projectId="1cf3d24f-84e2-41ee-ab97-a04b5be195ac" itemId="f9489bfb-90f2-48f5-9033-5fdccd76fc4d" />
+    </features>
+</package>

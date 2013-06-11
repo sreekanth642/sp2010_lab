@@ -1,0 +1,44 @@
+﻿<CodeSnippets
+    xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>spchol306_ex2_methods</Title>
+      <Shortcut>spchol306_ex2_methods</Shortcut>
+      <Description>Code snippet for Variables used in spchol306 Ex2 Methods</Description>
+      <Author>Microsoft Corporation</Author>
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+    </Header>
+    <Snippet>
+      <Code Language="vb">
+        <![CDATA[Public Sub OnRequestSucceeded(ByVal sender As Object, ByVal args As ClientRequestSucceededEventArgs)
+    ' this is not called on the UI thread
+    Dispatcher.BeginInvoke(New Action(AddressOf BindData))
+End Sub
+
+Public Sub BindData()
+    Dim employees As List(Of EmployeeContributions) = New List(Of EmployeeContributions)()
+
+    ' get list item values into a strongly typed class
+    For Each li As ListItem In _employees
+        employees.Add(New EmployeeContributions() With { _
+         .Name = li("Title").ToString(), _
+         .TeamName = li("Team").ToString(), _
+         .Contributions = Convert.ToDecimal(li("Contribution_x0020__x0028_in_x00")) _
+         })
+    Next
+
+    Dim teams As List(Of TeamContributions) = employees _
+                                              .GroupBy(Function(e) e.TeamName) _
+                                                  .Select(Function(t) New TeamContributions() With { _
+                                                      .Name = t.Key, _
+                                                      .Contributions = t.Sum(Function(e) e.Contributions) _
+                                                      }).ToList()
+
+    chart.DataContext = teams
+End Sub]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

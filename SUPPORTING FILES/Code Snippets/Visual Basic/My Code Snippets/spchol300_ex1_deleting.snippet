@@ -1,0 +1,28 @@
+﻿<CodeSnippets
+    xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>spchol300_ex1_deleting</Title>
+      <Shortcut>spchol300_ex1_deleting</Shortcut>
+      <Description>Code snippet for SPCHOL300 Ex1 Deleting</Description>
+      <Author>Microsoft Corporation</Author>
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+    </Header>
+    <Snippet>
+      <Code Language="vb">
+        <![CDATA[Try
+properties.Cancel = True
+   properties.ErrorMessage = "Bugs can only be resolved not deleted!"
+Catch ex As Exception
+'ToLog ex
+   Return
+Finally
+Me.EventFiringEnabled = True
+End Try
+]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

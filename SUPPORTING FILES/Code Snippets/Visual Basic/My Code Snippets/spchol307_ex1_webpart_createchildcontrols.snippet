@@ -1,0 +1,58 @@
+﻿<CodeSnippets
+    xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>spchol307_ex1_webpart_createchildcontrols</Title>
+      <Shortcut>spchol307_ex1_webpart_createchildcontrols</Shortcut>
+      <Description>Code snippet for SPCHOL307 Ex1 Web Part CreateChildControls</Description>
+      <Author>Microsoft Corporation</Author>
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+    </Header>
+    <Snippet>
+      <Code Language="vb">
+        <![CDATA[Protected Overrides Sub CreateChildControls()
+    MyBase.CreateChildControls()
+
+    Dim parent As New Panel
+    parent.Style.Add("border", "solid 1px Navy")
+    parent.Style.Add("background-color", "#EEEEEE")
+    parent.Style.Add("width", "250px")
+    _ddlProjects.ID = "ddlProjects"
+    _ddlProjects.AutoPostBack = True
+    AddHandler _ddlProjects.SelectedIndexChanged, New EventHandler(AddressOf ddlProjects_SelectedIndexChanged)
+    PopulateProjects()
+    parent.Controls.Add(_ddlProjects)
+
+    Dim panel As New Panel
+    Dim label As New Label
+    label.Text = "Description"
+    panel.Controls.Add(label)
+    parent.Controls.Add(panel)
+    panel = New Panel
+    panel.Controls.Add(_tbDescription)
+    parent.Controls.Add(panel)
+
+    label = New Label
+    label.Text = "Due Date"
+    panel = New Panel
+    panel.Controls.Add(label)
+    parent.Controls.Add(panel)
+
+    panel = New Panel
+    panel.Controls.Add(_tbDueDate)
+    parent.Controls.Add(panel)
+
+    panel = New Panel
+    Dim button As New Button
+    button.Text = "Update Project"
+    AddHandler button.Click, New EventHandler(AddressOf bUpdateProject_Click)
+    panel.Controls.Add(button)
+    parent.Controls.Add(panel)
+    Controls.Add(parent)
+End Sub]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

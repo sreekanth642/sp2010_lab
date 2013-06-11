@@ -1,0 +1,168 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets  xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>W1</Title>
+      <Description>Need to put this on the toolbox as I haven't made it work</Description>
+      <Author>Microsoft</Author>
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+      <Shortcut>W1</Shortcut>
+    </Header>
+    <Snippet>
+      <Code Language="XML">
+        <![CDATA[
+Name: <asp:TextBox ID="MyName" runat="server"></asp:TextBox><br />
+Address: <asp:TextBox ID="MyAddress" runat="server"></asp:TextBox><br />
+]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>w2</Title>
+      <Description></Description>
+      <Author>Microsoft</Author>
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+      <Shortcut>w2</Shortcut>
+    </Header>
+    <Snippet>
+      <Code Language="csharp">
+        <![CDATA[return string.Format("Name {0}  Address {1}", MyName.Text, MyAddress.Text);]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>s1</Title>
+      <Description></Description>
+      <Author>Microsoft</Author>
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+      <Shortcut>s1</Shortcut>
+    </Header>
+    <Snippet>
+      <Code Language="csharp">
+        <![CDATA[                    Label lbl = new Label();
+                    SPWebCollection Webs;
+                    SPListCollection lists;
+                    Webs = SPContext.Current.Site.AllWebs;
+                    foreach (SPWeb web in Webs)
+                    {
+                        lists = web.Lists;
+                        foreach (SPList list in lists)
+                            lbl.Text = lbl.Text + "<br>" + list.Title;
+                    }
+                    Controls.Add(lbl);]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>s2</Title>
+      <Description></Description>
+      <Author>Microsoft</Author>
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+      <Shortcut>s2</Shortcut>
+    </Header>
+    <Snippet>
+      <Code Language="csharp">
+        <![CDATA[            TextBox txt = new TextBox();
+            Button btn = new Button();
+            DateTime dt = DateTime.Now;
+            btn.Text = "Show All Lists";
+            btn.Click += delegate
+            {
+                do
+                {]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>s3</Title>
+      <Description></Description>
+      <Author>Microsoft</Author>
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+      <Shortcut>s3</Shortcut>
+    </Header>
+    <Snippet>
+      <Code Language="csharp">
+        <![CDATA[                }
+                while (dt.AddSeconds(int.Parse(txt.Text)).CompareTo(DateTime.Now) > 0);
+            };
+            Controls.Add(txt);
+            Controls.Add(btn);
+]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>r1</Title>
+      <Description></Description>
+      <Author>Microsoft</Author>
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+      <Shortcut>r1</Shortcut>
+    </Header>
+    <Snippet>
+      <Code Language="csharp">
+        <![CDATA[
+            using ServiceReference1;
+    using System.Net;
+    ]]>      
+  </Code>
+  </Snippet>
+  </CodeSnippet>
+
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>r2</Title>
+      <Description></Description>
+      <Author>Microsoft</Author>
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+      <Shortcut>r2</Shortcut>
+    </Header>
+    <Snippet>
+      <Code Language="csharp">
+        <![CDATA[
+        TeamSiteDataContext dc = new TeamSiteDataContext(new Uri("http://localhost/_vti_bin/ListData.svc"));
+]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>r3</Title>
+      <Description></Description>
+      <Author>Microsoft</Author>
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+      <Shortcut>r3</Shortcut>
+    </Header>
+    <Snippet>
+      <Code Language="csharp">
+        <![CDATA[
+            dc.Credentials = CredentialCache.DefaultCredentials;
+            employeesBindingSource.DataSource = dc.Employees;
+]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+
+</CodeSnippets>

@@ -1,0 +1,28 @@
+﻿<CodeSnippets
+    xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>spchol302_ex1_pageload</Title>
+      <Shortcut>spchol302_ex1_pageload</Shortcut>
+      <Description>Code snippet for SPCHOL302 Ex1 Page_Load Method</Description>
+      <Author>Microsoft Corporation</Author>
+    </Header>
+    <Snippet>
+      <Code Language="VB">
+        <![CDATA[
+Dim spWebUrl As String = SPContext.Current.Web.Url
+
+Dim dc As New SPLinqDataContext(spWebUrl)
+
+Projects = dc.GetList(Of ProjectsItem)("Projects")
+Employees = dc.GetList(Of EmployeesItem)("Employees")
+Bugs = dc.GetList(Of BugItem)("Bugs")
+If (Not IsPostBack) Then
+   GetEmployees()
+End If
+
+dc.Dispose()]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

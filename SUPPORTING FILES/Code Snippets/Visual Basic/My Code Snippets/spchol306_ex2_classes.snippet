@@ -1,0 +1,46 @@
+﻿<CodeSnippets
+    xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>spchol306_ex2_classes</Title>
+      <Shortcut>spchol306_ex2_classes</Shortcut>
+      <Description>Code snippet for spchol306 Ex2 Classes</Description>
+      <Author>Microsoft Corporation</Author>
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+    </Header>
+    <Snippet>
+      <Code Language="vb">
+        <![CDATA[Public Class EmployeeContributions
+    Public Name As String
+    Public TeamName As String
+    Public Contributions As Decimal
+End Class
+
+Public Class TeamContributions
+    Private _name As String
+    Private _contributions As Decimal
+
+    Public Property Name() As String
+        Get
+            Return _name
+        End Get
+        Set(ByVal value As String)
+            _name = value
+        End Set
+    End Property
+
+    Public Property Contributions() As Decimal
+        Get
+            Return _contributions
+        End Get
+        Set(ByVal value As Decimal)
+            _contributions = value
+        End Set
+    End Property
+End Class ]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

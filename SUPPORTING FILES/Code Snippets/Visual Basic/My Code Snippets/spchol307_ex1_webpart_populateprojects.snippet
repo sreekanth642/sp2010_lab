@@ -1,0 +1,39 @@
+﻿<CodeSnippets
+    xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>spchol307_ex1_webpart_populateprojects</Title>
+      <Shortcut>spchol307_ex1_webpart_populateprojects</Shortcut>
+      <Description>Code snippet for SPCHOL307 Ex1 PopulateProjects</Description>
+      <Author>Microsoft Corporation</Author>
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+    </Header>
+    <Snippet>
+      <Code Language="vb">
+        <![CDATA[Private Sub PopulateProjects()
+    Dim splProjects As SPList = SPContext.Current.Web.Lists.Item("Projects")
+    _ddlProjects.Items.Add("-- Select a Project --")
+    Dim item As SPListItem
+    For Each item In splProjects.Items
+        _ddlProjects.Items.Add(New ListItem(item.Title, item.ID.ToString))
+    Next
+End Sub
+
+Private Sub ddlProjects_SelectedIndexChanged(ByVal sender As Object, ByVal e As EventArgs)
+    GetProjectDetails()
+End Sub
+
+Private Sub bUpdateProject_Click(ByVal sender As Object, ByVal e As EventArgs)
+    EnsureChildControls()
+    Dim nProjectID As Integer = Convert.ToInt32(_ddlProjects.SelectedValue)
+    Dim spliProject As SPListItem = SPContext.Current.Web.Lists.Item("Projects").GetItemById(nProjectID)
+    spliProject.Item("Description") = _tbDescription.Text
+    spliProject.Item("Due_x0020_Date") = _tbDueDate.Text
+    spliProject.Update()
+End Sub]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

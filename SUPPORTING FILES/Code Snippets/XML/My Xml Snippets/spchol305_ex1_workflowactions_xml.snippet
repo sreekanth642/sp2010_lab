@@ -1,0 +1,43 @@
+﻿<CodeSnippets
+    xmlns="http://schemas.microsoft.com/VisualStudio/2008/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>spchol305_ex1_workflowactions_xml</Title>
+      <Shortcut>spchol305_ex1_workflowactions_xml</Shortcut>
+      <Description>Code snippet for spchol305 Ex1 Workflow Actions</Description>
+      <Author>Microsoft Corporation</Author>
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+    </Header>
+    <Snippet>
+      <Code Language="xml">
+        <![CDATA[<?xml version="1.0" encoding="utf-8"?>
+<WorkflowInfo>
+    <Actions Sequential="then" Parallel="and">
+        <Action Name="Create Document Library"
+            ClassName="SPDActivityDemo.CreateDocumentLibrary"
+            Assembly="SPDActivityDemo, Version=1.0.0.0,  
+           Culture=neutral, PublicKeyToken=a66e91d2ee2fa8f8"
+            AppliesTo="all"
+            Category="Labs">
+            <RuleDesigner Sentence="Document Library Name %1 to site %2.">
+                <FieldBind Field="DocLibName" Text="Document Library Name"
+                   DesignerType="TextArea" Id="1"/>
+                <FieldBind Field="Url" Text="Url of base site" Id="2"
+                   DesignerType="TextArea"/>
+            </RuleDesigner>
+            <Parameters>
+                <Parameter Name="DocLibName" Type="System.String, mscorlib"
+              Direction="In" />
+                <Parameter Name="Url" Type="System.String, mscorlib"
+              Direction="In" />
+            </Parameters>
+        </Action>
+    </Actions>
+</WorkflowInfo>
+]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

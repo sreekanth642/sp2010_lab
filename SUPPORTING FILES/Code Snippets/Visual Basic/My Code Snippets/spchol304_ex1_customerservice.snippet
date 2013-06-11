@@ -1,0 +1,54 @@
+﻿<CodeSnippets
+    xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>spchol304_ex1_customerservice</Title>
+      <Shortcut>spchol304_ex1_customerservice</Shortcut>
+      <Description>Code snippet for SPCHOL304 Ex1 CustomerService.cs</Description>
+      <Author>Microsoft Corporation</Author>
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+    </Header>
+    <Snippet>
+      <Code Language="VB">
+        <![CDATA[
+    Public Shared d As Dictionary(Of Integer, Customer) = Nothing
+
+    Public Shared Function ReadItem(ByVal id As Integer) As Customer
+        Dim e As New Customer()
+        Dim c = d([id])
+        e.CustomerId = c.CustomerId
+        e.Message = c.Message
+        e.FirstName = c.FirstName
+        e.LastName = c.LastName
+        Return e
+    End Function
+
+    Public Shared Function ReadList() As IEnumerable(Of Customer)
+
+        If d Is Nothing Then
+            d = New Dictionary(Of Integer, Customer)
+            For i As Integer = 0 To 9
+                Dim e As New Customer()
+                e.CustomerId = i
+                e.Message = e.CustomerId & " Item Data"
+                e.FirstName = e.CustomerId & " First Name"
+                e.LastName = e.CustomerId & "Last Name"
+                d.Add(i, e)
+            Next
+        End If
+
+        Return d.Values
+    End Function
+
+    Public Shared Sub Update(ByVal customer As Customer, ByVal id As Integer)
+        d([id]).FirstName = customer.FirstName
+        d([id]).LastName = customer.LastName
+        d([id]).Message = customer.Message
+    End Sub
+]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

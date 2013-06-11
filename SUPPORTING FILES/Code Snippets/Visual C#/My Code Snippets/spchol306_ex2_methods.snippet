@@ -1,0 +1,50 @@
+﻿<CodeSnippets
+    xmlns="http://schemas.microsoft.com/VisualStudio/2008/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>spchol306_ex2_methods</Title>
+      <Shortcut>spchol306_ex2_methods</Shortcut>
+      <Description>Code snippet for Variables used in spchol306 Ex2 Methods</Description>
+      <Author>Microsoft Corporation</Author>
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+    </Header>
+    <Snippet>
+      <Code Language="csharp">
+        <![CDATA[private void OnRequestSucceeded(Object sender, ClientRequestSucceededEventArgs args)
+{
+    // this is not called on the UI thread
+    Dispatcher.BeginInvoke(BindData);
+}
+
+private void BindData()
+{
+    List<EmployeeContributions> employees = new List<EmployeeContributions>();
+
+    // get list item values into a strongly typed class
+    foreach (ListItem li in _employees)
+    {
+        employees.Add(new EmployeeContributions
+        {
+            Name = li["Title"].ToString(),
+            TeamName = li["Team"].ToString(),
+            Contributions = Convert.ToDecimal(li["Contribution_x0020__x0028_in_x00"])
+        });
+    }
+
+    // use linq to group employees on team name and then total team contributions
+    List<TeamContributions> teams = employees
+        .GroupBy(e => e.TeamName)
+        .Select(t => new TeamContributions
+        {
+            Name = t.Key,
+            Contributions = t.Sum(e => e.Contributions)
+        }).ToList();
+
+    chart.DataContext = teams; // must be on UI thread
+}]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

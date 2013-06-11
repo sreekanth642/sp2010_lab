@@ -1,0 +1,39 @@
+==== spgrid ====
+
+<%@ Import Namespace="Microsoft.SharePoint.WebControls" %>
+
+<SharePoint:SPGridView id="spGridView" runat="server" AutoGenerateColumns="false">
+  <HeaderStyle HorizontalAlign="Left" ForeColor="Navy" Font-Bold="true" />
+  <Columns>
+    <SharePoint:SPBoundField  DataField="Title" HeaderText="Title"></SharePoint:SPBoundField>
+    <SharePoint:SPBoundField DataField="JobTitle" HeaderText="JobTitle"></SharePoint:SPBoundField>
+    <SharePoint:SPBoundField DataField="ProjectTitle" HeaderText="ProjectTitle"></SharePoint:SPBoundField>
+    <SharePoint:SPBoundField DataField="DueDate" HeaderText="DueDate"></SharePoint:SPBoundField>
+  </Columns>
+</SharePoint:SPGridView>
+
+==== load up grid ====
+
+    ProjectsDataContext dc = new
+    ProjectsDataContext(SPContext.Current.Web.Url);
+
+    EntityList<EmployeesItem> Employees = 
+    dc.GetList<EmployeesItem>("Employees");
+
+    var empQuery = from emp in Employees
+                   where emp.Project.DueDate <
+                   DateTime.Now.AddMonths(6)
+                   select new { emp.Title, emp.JobTitle, 
+                   ProjectTitle = emp.Project.Title, 
+                   DueDate =
+                   emp.Project.DueDate.Value.ToShortDateString() };
+
+    spGridView.DataSource = empQuery;
+    spGridView.DataBind();
+
+==== workflow form ====
+
+Name:
+    <asp:TextBox ID="MyName" runat="server"></asp:TextBox><br />
+    Address:
+    <asp:TextBox ID="MyAddress" runat="server"></asp:TextBox><br />

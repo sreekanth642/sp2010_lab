@@ -1,0 +1,36 @@
+﻿<CodeSnippets
+    xmlns="http://schemas.microsoft.com/VisualStudio/2008/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>spchol306_ex1_initializecomponent</Title>
+      <Shortcut>spchol306_ex1_initializecomponent</Shortcut>
+      <Description>Code snippet for Variables used in spchol306 Ex1 Initialize Component</Description>
+      <Author>Microsoft Corporation</Author>
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+    </Header>
+    <Snippet>
+      <Code Language="csharp">
+        <![CDATA[ClientContext context = new ClientContext(ApplicationContext.Current.Url);
+context.Load(context.Web);
+List Projects = context.Web.Lists.GetByTitle("Projects");
+context.Load(Projects);
+
+CamlQuery query = new Microsoft.SharePoint.Client.CamlQuery();
+string camlQueryXml = "<View><Query><Where><Gt>" +
+    "<FieldRef Name='Due_x0020_Date' />" +
+    "<Value Type='DateTime'>2008-01-1T00:00:00Z</Value>" +
+    "</Gt></Where></Query><ViewFields>" +
+    "<FieldRef Name=\"Title\" /><FieldRef Name=\"Description\" />" +
+    "<FieldRef Name=\"Due_x0020_Date\" />" +
+    "</ViewFields></View>";
+
+query.ViewXml = camlQueryXml;
+_projects = Projects.GetItems(query);
+context.Load(_projects);
+context.ExecuteQueryAsync(new ClientRequestSucceededEventHandler(OnRequestSucceeded), null);]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

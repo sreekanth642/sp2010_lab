@@ -1,0 +1,27 @@
+﻿<ns0:RootWorkflowActivityWithData x:Class="SPDWorkflowImport.SPDWorkflowFT" x:Name="SPDWorkflowFT" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/workflow" xmlns:ns1="clr-namespace:Microsoft.SharePoint.WorkflowActions.WithKey;Assembly=Microsoft.SharePoint.WorkflowActions, Version=14.0.0.0, Culture=neutral, PublicKeyToken=null" xmlns:ns2="clr-namespace:SPDActivityDemo;Assembly=SPDActivityDemo, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:ns0="clr-namespace:Microsoft.SharePoint.WorkflowActions;Assembly=Microsoft.SharePoint.WorkflowActions, Version=14.0.0.0, Culture=neutral, PublicKeyToken=null">
+	<ns0:RootWorkflowActivityWithData.WorkflowFields>
+		<ns0:WorkflowDataField Name="__list" Type="System.String" />
+		<ns0:WorkflowDataField Name="__item" Type="Microsoft.SharePoint.Workflow.SPItemKey, Microsoft.SharePoint, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" />
+		<ns0:WorkflowDataField Name="__context" Type="Microsoft.SharePoint.WorkflowActions.WorkflowContext" />
+		<ns0:WorkflowDataField Name="__initParams" Type="Microsoft.SharePoint.Workflow.SPWorkflowActivationProperties" />
+		<ns0:WorkflowDataField Name="__workflowId" Type="System.Guid" />
+		<ns0:WorkflowDataField Name="__historylist" Type="System.String" />
+		<ns0:WorkflowDataField Name="__tasklist" Type="System.String" />
+		<ns0:WorkflowDataField Name="__itemId" Type="System.Int32" />
+	</ns0:RootWorkflowActivityWithData.WorkflowFields>
+	<ns0:OnWorkflowActivated x:Name="OnWorkflowActivated1" WorkflowProperties="{ActivityBind SPDWorkflowFT,Path=__initParams}">
+		<ns0:OnWorkflowActivated.CorrelationToken>
+			<wf0:CorrelationToken OwnerActivityName="SPDWorkflowFT" Name="refObject" xmlns:wf0="http://schemas.microsoft.com/winfx/2006/xaml/workflow" />
+		</ns0:OnWorkflowActivated.CorrelationToken>
+	</ns0:OnWorkflowActivated>
+	<ns0:ApplyActivation x:Name="ApplyActivation1" __Context="{ActivityBind SPDWorkflowFT,Path=__context}" __WorkflowProperties="{ActivityBind SPDWorkflowFT,Path=__initParams}" />
+	<SequenceActivity x:Name="SequenceActivity1" Description="Step 1">
+		<ns1:LookupActivity x:Name="LookupActivity1" __Context="{ActivityBind SPDWorkflowFT,Path=__context}" FieldName="Title" ListItem="{ActivityBind SPDWorkflowFT,Path=__item}" LookupFunction="LookupString" ListId="{ActivityBind SPDWorkflowFT,Path=__list}" />
+		<ns0:CoerceStringActivity x:Name="CoerceStringActivity1" __Context="{ActivityBind SPDWorkflowFT,Path=__context}" CoercionFunction="AsDNString">
+			<ns0:CoerceStringActivity.Value>
+				<ActivityBind Name="LookupActivity1" Path="ReturnValue" />
+			</ns0:CoerceStringActivity.Value>
+		</ns0:CoerceStringActivity>
+		<ns2:CreateDocumentLibrary Url="http://intranet.contoso.com" x:Name="CreateDocumentLibrary1" DocLibName="{ActivityBind CoerceStringActivity1,Path=ReturnValue}" />
+	</SequenceActivity>
+</ns0:RootWorkflowActivityWithData>

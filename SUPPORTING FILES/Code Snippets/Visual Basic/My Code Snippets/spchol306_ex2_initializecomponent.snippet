@@ -1,0 +1,30 @@
+﻿<CodeSnippets
+    xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>spchol306_ex2_initializecomponent</Title>
+      <Shortcut>spchol306_ex2_initializecomponent</Shortcut>
+      <Description>Code snippet for Variables used in spchol306 Ex2 Initialize Component</Description>
+      <Author>Microsoft Corporation</Author>
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+    </Header>
+    <Snippet>
+      <Code Language="vb">
+        <![CDATA[Dim context As ClientContext = New ClientContext(ApplicationContext.Current.Url)
+context.Load(context.Web)
+Dim employees As List = context.Web.Lists.GetByTitle("Employees")
+context.Load(employees)
+
+Dim query As CamlQuery = New CamlQuery()
+Dim camlQueryXml As String = Nothing
+
+ query.ViewXml = camlQueryXml
+ _employees = employees.GetItems(query)
+ context.Load(_employees)
+ context.ExecuteQueryAsync(New ClientRequestSucceededEventHandler(AddressOf OnRequestSucceeded), Nothing)]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

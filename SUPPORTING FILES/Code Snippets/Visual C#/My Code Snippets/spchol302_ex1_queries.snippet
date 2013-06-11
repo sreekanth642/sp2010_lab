@@ -1,0 +1,85 @@
+﻿<CodeSnippets
+    xmlns="http://schemas.microsoft.com/VisualStudio/2008/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>spchol302_ex1_queries</Title>
+      <Shortcut>spchol302_ex1_queries</Shortcut>
+      <Description>Code snippet for SPCHOL302 Ex1 Linq Query Methods</Description>
+      <Author>Microsoft Corporation</Author>
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+    </Header>
+    <Snippet>
+      <Code Language="csharp">
+        <![CDATA[
+       public void ChangeQuery(object o, EventArgs e)
+        {
+            var selected = dropDownList.SelectedValue;
+            switch (selected)
+            {
+                case "Projects":
+                    GetProjects();
+                    break;
+                case "Employees":
+                    GetEmployees();
+                    break;
+                case "Bugs":
+                    GetBugs();
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        private void GetBugs()
+        {
+            var bugsQuery = from bug in Bugs
+                            select new
+                           {
+                              Title = bug.Project,
+                              JobTitle = bug.Description,
+                               ProjectTitle = bug.AssignedTo
+                           };
+
+            spGridView.DataSource = bugsQuery;
+            spGridView.DataBind();
+        }
+
+        private void GetEmployees()
+        {
+            var empQuery = from emp in Employees
+                           where emp.Project.DueDate <
+                           DateTime.Now.AddMonths(6)
+                           select new
+                           {
+                               emp.Title,
+                               emp.JobTitle,
+                               ProjectTitle = emp.Project.Title
+                           };
+
+            spGridView.DataSource = empQuery;
+            spGridView.DataBind();
+        }
+
+        private void GetProjects()
+        {
+           var projQuery = from p in Projects
+                           where p.DueDate <
+                           DateTime.Now.AddMonths(6)
+                           select new
+                           {
+                               Title = p.DueDate,
+                               JobTitle = p.Description,
+                               ProjectTitle = p.DueDate
+                           };
+
+           spGridView.DataSource = projQuery;
+           spGridView.DataBind();
+        }
+        
+        ]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>
